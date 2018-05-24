@@ -4,7 +4,7 @@ const path = require('path');
 const serve = require('koa-static');
 const fs = require('');
 
-const app = new koa(); 1
+const app = new koa();
 
 app.use(serve(path.join(__dirname)));
 
