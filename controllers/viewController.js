@@ -1,5 +1,5 @@
 'use strict';
-const route = require('koa-route');
+const router = require('koa-router')();
 const nunjucks = require('nunjucks');
 
 
@@ -34,14 +34,13 @@ let env = createEnv('view', {
 	}
 });
 
-let routes = [];
 
 //hello
-routes.push(route.get("/hello", ctx => {
+router.get("/hello", ctx => {
 	let html = env.render('../views/hello.html', {
 		name: '小明'
 	});
 	ctx.response.body = html;
-}));
+});
 
-module.exports = routes;
+module.exports = router.routes();
