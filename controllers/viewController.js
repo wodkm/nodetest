@@ -2,7 +2,6 @@
 const router = require('koa-router')();
 const nunjucks = require('nunjucks');
 
-
 function createEnv(path, opts) {
 	var
 		autoescape = opts.autoescape === undefined ? true : opts.autoescape,
@@ -42,5 +41,13 @@ router.get("/hello", ctx => {
 	});
 	ctx.response.body = html;
 });
+
+// //404
+// router.get("/404", ctx => {
+// 	let html = env.render('../views/404.html', {
+// 		name: '小明'
+// 	});
+// 	ctx.response.body = html;
+// });
 
 module.exports = router.routes();
