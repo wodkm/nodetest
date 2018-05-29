@@ -27,7 +27,7 @@ function createEnv(path, opts) {
 let env = createEnv('view', {
 	watch: true,
 	filters: {
-		hex: function(n) {
+		hex: function (n) {
 			return '0x' + n.toString(16);
 		}
 	}
@@ -42,12 +42,10 @@ router.get("/hello", ctx => {
 	ctx.response.body = html;
 });
 
-// //404
-// router.get("/404", ctx => {
-// 	let html = env.render('../views/404.html', {
-// 		name: '小明'
-// 	});
-// 	ctx.response.body = html;
-// });
+//query
+router.get("/query", ctx => {
+	let html = env.render('../views/query/query.html');
+	ctx.response.body = html;
+});
 
 module.exports = router.routes();

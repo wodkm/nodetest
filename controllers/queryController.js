@@ -13,17 +13,19 @@ var sequelize = new Sequelize(config.database.name, config.database.username, co
     //     idle: 30000
     // }
 });
-
+// sequelize.authenticate().then(
+//     () => {
+//         console.log('Connection has been established successfully.');
+//     }
+// ).catch(err => {
+//     console.error('Unable to connect to the database:', err);
+// });
 // var sequelize = new Sequelize(`mysql://${config.database.username}:${config.database.password}@${config.database.host}}/${config.database.name}`);
 
-router.get("/query", ctx => {
-    sequelize.authenticate().then(
-        () => {
-            console.log('Connection has been established successfully.');
-        }
-    ).catch(err => {
-        console.error('Unable to connect to the database:', err);
-    });
+router.post("/queryInfo", ctx => {
+    console.log(ctx.request.body);
+    console.log(ctx.query.b);
+    ctx.response.body = JSON.parse({ data: 123 });
 });
 
 module.exports = router.routes();
