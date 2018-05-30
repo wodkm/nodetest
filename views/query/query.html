@@ -11,12 +11,12 @@
 <script type="text/javascript">
     fetch(`/queryInfo?b=1`, {
         method: 'post',
-        // body: JSON.stringify({
-        //     a: 123
-        // }),
-        // headers: {
-        //     'Content-Type': 'application/json'
-        // },
+        body: JSON.stringify({
+            a: 123
+        }),
+        headers: {
+            'Content-Type': 'application/json'
+        },
     }).then(resp => {
         if (resp.ok) {
             return resp.json();
