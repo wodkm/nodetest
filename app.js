@@ -1,12 +1,13 @@
 'use strict';
-const koa = require('koa');
-const path = require('path');
-const serve = require('koa-static'); //静态资源
-const bodyParser = require('koa-bodyparser'); //json
+import koa from 'koa';
+import path from 'path';
+import static from 'koa-static'; //静态资源
+import bodyParser from 'koa-bodyparser'; //json
 
 const app = new koa();
 
-app.use(serve(path.join(__dirname)));
+app.use(static(path.join(`${__dirname}/static`)));
+app.use(static(path.join(`${__dirname}/views`)));
 app.use(bodyParser());
 
 app.on('error', (err, ctx) => {

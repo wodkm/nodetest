@@ -1,6 +1,7 @@
 'use strict';
 const router = require('koa-router')();
 const nunjucks = require('nunjucks');
+const fs = require('fs');
 
 function createEnv(path, opts) {
 	var
@@ -33,6 +34,12 @@ let env = createEnv('view', {
 	}
 });
 
+
+//index
+router.get("/index", ctx => {
+	ctx.response.type = 'html';
+	ctx.response.body = fs.createReadStream('./views/index.html');
+});
 
 //hello
 router.get("/hello", ctx => {
