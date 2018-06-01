@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import '../static/stylesheets/App.css';
+import logo from '../../static/images/logo.svg';
+import '../../static/stylesheets/App.css';
 
 class App extends Component {
     render() {
@@ -16,4 +16,4 @@ class App extends Component {
     }
 }
 
-export default App;
+module.exports = App;
