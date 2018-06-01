@@ -6,7 +6,6 @@ const bodyParser = require('koa-bodyparser');//json
 
 const app = new koa();
 
-// app.use(serve(__dirname));
 app.use(serve(__dirname + "/static"));
 app.use(serve(__dirname + "/static/js"));
 app.use(serve(__dirname + "/views"));
