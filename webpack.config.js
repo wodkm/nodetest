@@ -1,15 +1,21 @@
 const path = require('path');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 //遍历指定文件目录，使用多入口文件
-const fs = require('fs');
-var files = fs.readdirSync(__dirname + '/src');
-var jsx_files = files.filter((f) => {
-    return f.endsWith('.jsx');
-});
+const glob = require('glob');
+var files = glob.sync(__dirname + '/src/*.jsx');
 let entries = {};
-jsx_files.map((item, index) => {
-    entries[item.split(".")[0]] = __dirname + '/src/' + item;
+files.map((item, index) => {
+    entries[item.split(".")[0]] = item;
 });
+// const fs = require('fs');
+// var files = fs.readdirSync(__dirname + '/src');
+// var jsx_files = files.filter((f) => {
+//     return f.endsWith('.jsx');
+// });
+// let entries = {};
+// jsx_files.map((item, index) => {
+//     entries[item.split(".")[0]] = __dirname + '/src/' + item;
+// });
 
 module.exports = {
     // mode: 'development',
