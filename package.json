@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon app.js",
-    "dev": "webpack --config ./webpack.config.js"
+    "dev": "webpack --config ./webpack.config.js",
+    "sass": "sass --watch static/sass:static/stylesheets --style expanded",
   },
   "author": "",
   "license": "ISC",
