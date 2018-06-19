@@ -5,7 +5,8 @@ const glob = require('glob');
 var files = glob.sync(__dirname + '/src/*.jsx');
 let entries = {};
 files.map((item, index) => {
-    entries[item.split(".")[0]] = item;
+    console.log(path.basename(item, '.jsx'));
+    entries[path.basename(item, '.jsx')] = item;
 });
 // const fs = require('fs');
 // var files = fs.readdirSync(__dirname + '/src');
@@ -35,9 +36,7 @@ module.exports = {
                 use: {
                     loader: 'babel-loader',
                     options: {
-                        presets: ['babel-preset-react'],
-                        // presets: ['babel-preset-es2015'],
-                        // plugins: ['@babel/plugin-proposal-class-properties']
+                        presets: ['babel-preset-es2015', 'babel-preset-react'],
                     }
                 },
                 exclude: /node_modules/
