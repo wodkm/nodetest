@@ -5,7 +5,7 @@ const glob = require('glob');
 var files = glob.sync(__dirname + '/src/*.jsx');
 let entries = {};
 files.map((item, index) => {
-    console.log(path.basename(item, '.jsx'));
+    console.log(path.basename(item, '.jsx'));//获取文件名
     entries[path.basename(item, '.jsx')] = item;
 });
 // const fs = require('fs');
