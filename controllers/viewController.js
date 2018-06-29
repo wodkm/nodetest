@@ -36,9 +36,15 @@ let env = createEnv('view', {
 
 
 //index
+// router.get("/index", ctx => {
+// 	ctx.response.type = 'html';
+// 	ctx.response.body = fs.createReadStream('./views/index.html');
+// });
 router.get("/index", ctx => {
-	ctx.response.type = 'html';
-	ctx.response.body = fs.createReadStream('./views/index.html');
+	let html = env.render('../views/index.html', {
+		moduleName: 'index'
+	});
+	ctx.response.body = html;
 });
 
 //hello
