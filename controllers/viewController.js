@@ -49,7 +49,8 @@ router.get("/index", ctx => {
 
 //hello
 router.get("/hello", ctx => {
-	let html = env.render('../views/hello.html', {
+	let html = env.render('../views/index.html', {
+		moduleName: 'index2',
 		name: '小明'
 	});
 	ctx.response.body = html;
