@@ -6,7 +6,8 @@
   "scripts": {
     "start": "nodemon app.js",
     "test": "webpack --config ./webpack.config.js",
-    "sass": "sass --watch static/sass:static/stylesheets --style expanded"
+    "sass": "sass --watch static/sass:static/stylesheets --style expanded",
+    "forever": "forever start"
   },
   "author": "",
   "license": "ISC",
