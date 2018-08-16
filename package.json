@@ -7,7 +7,7 @@
     "start": "nodemon app.js",
     "test": "webpack --config ./webpack.config.js",
     "sass": "sass --watch static/sass:static/stylesheets --style expanded",
-    "forever": "forever start"
+    "forever": "forever nodemon --exitcrash app.js"
   },
   "author": "",
   "license": "ISC",
