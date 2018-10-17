@@ -6,5 +6,6 @@ ORM框架: Sequelize
 数据库: MySQL云数据库
 数据库操作：sequelize
 开发用守护进程：nodemon
-守护进程：forever=>pm2
+守护进程：forever=>pm2，注：请全局安装
 爬虫：cheerio
+如果要使用云服务器的话，推荐阿里云
