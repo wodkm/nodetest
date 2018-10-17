@@ -13,7 +13,7 @@ let routes = [];
 // 处理每个js文件:
 
 js_files.map((item, index) => {
-	console.log(`process controller: ${item.split(".")[0]}`);
+	console.log(`loading controller: ${item.split(".")[0]}`);
 	// 导入js文件:
 	let mapping = require(__dirname + '/controllers/' + item.split(".")[0]);
 	routes.push(mapping);
