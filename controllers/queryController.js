@@ -22,11 +22,8 @@ var sequelize = new Sequelize(config.database.name, config.database.username, co
 // });
 // var sequelize = new Sequelize(`mysql://${config.database.username}:${config.database.password}@${config.database.host}}/${config.database.name}`);
 
-router.post("/queryInfo", ctx => {
-    // console.log(ctx.request.body);
-    // console.log(ctx.query.b);
-    // ctx.response.body = JSON.stringify({ data: 123 });
-    ctx.response.body = JSON.parse({ data: 123 });
+router.get("/queryInfo", ctx => {
+    ctx.response.body = JSON.stringify({ data: 123 });
 });
 
 module.exports = router.routes();

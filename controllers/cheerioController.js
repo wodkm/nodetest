@@ -3,15 +3,29 @@ const router = require('koa-router')();
 const cheerio = require('cheerio');
 const request = require('request');
 
-router.get("/queryInfo", ctx => {
+router.get("/cheerio", ctx => {
     var news = new Array();
-    request('http://jwc.scu.edu.cn/jwc/frontPage.action', function (err, res) {
+    ctx.body = 123;
+    request('https://www.jianshu.com/', function (err, res) {
         if (err) return console.error(err);
-
         var $ = cheerio.load(res.body.toString());
-
-        var table = $('body').children('table').eq(3).html();
+        var table = $('.note-list');
         console.log(table);
+        console.log(ctx);
+        ctx.body = 123;
+    });
+});
+
+router.get("/cheerio", ctx => {
+    var news = new Array();
+    ctx.body = 123;
+    request('https://www.jianshu.com/', function (err, res) {
+        if (err) return console.error(err);
+        var $ = cheerio.load(res.body.toString());
+        var table = $('.note-list');
+        console.log(table);
+        console.log(ctx);
+        ctx.body = 123;
     });
 });
 
