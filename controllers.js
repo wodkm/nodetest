@@ -12,7 +12,7 @@ var js_files = files.filter((f) => {
 
 let routes = [];
 
-global.urlDictionary = [];
+global.urlDictionary = {};
 
 // 处理每个js文件,检测routers中是否有重复定义的path，如果有则打印错误日志并结束进程
 js_files.map((item, index) => {
@@ -21,10 +21,15 @@ js_files.map((item, index) => {
 	let mapping = require(__dirname + '/controllers/' + item.split(".")[0]);
 	try {
 		mapping.router.stack.forEach(element => {
-			if (global.urlDictionary.indexOf(element.path) == -1) {
-				global.urlDictionary.push(element.path);
+			if (global.urlDictionary[element.path] === undefined) {
+				global.urlDictionary[element.path] = new Set();
+				element.methods.forEach(item => {
+					global.urlDictionary[element.path].add(item);
+				});
+			} else if (element.methods.map(item => global.urlDictionary[element.path].has(item)).indexOf(true) > -1) {
+				global.urlDictionary[element.path].push(element.methods);
 			} else {
-				throw (`Duplicate Definition Path:${element.path}.File Dictionary:${__dirname + '/controllers/' + item}`);
+				throw (`Duplicate Definition Path:${element.path},METHOD:${element.methods}.File Dictionary:${__dirname + '/controllers/' + item}`);
 			}
 		});
 	} catch (error) {
