@@ -29,7 +29,7 @@ js_files.map((item, index) => {
 			} else if (element.methods.map(item => global.urlDictionary[element.path].has(item)).indexOf(true) > -1) {
 				global.urlDictionary[element.path].push(element.methods);
 			} else {
-				throw (`Duplicate Definition Path:${element.path},METHOD:${element.methods}.File Dictionary:${__dirname + '/controllers/' + item}`);
+				throw (`[${config.exitProcessWhileDuplicateDefinitionPath ? 'Error' : 'Warning'}]Duplicate Definition Path:${element.path},METHOD:${element.methods}.File Dictionary:${__dirname + '/controllers/' + item}`);
 			}
 		});
 	} catch (error) {
