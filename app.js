@@ -3,12 +3,20 @@ const koa = require('koa');
 const path = require('path');
 const serve = require('koa-static');//静态资源
 const bodyParser = require('koa-bodyparser');//json
+const config = require('./const/config');
+
+//加载log4js
+const log4js = require('log4js');
+log4js.configure(config.log4jsConfigure);
+global.logger = log4js.getLogger();
+logger.info('Log4js loaded');
+
 
 const app = new koa();
 
-app.use(serve(__dirname + "/static"));
-app.use(serve(__dirname + "/static/js"));
-app.use(serve(__dirname + "/views"));
+app.use(serve(__dirname + '/static'));
+app.use(serve(__dirname + '/static/js'));
+app.use(serve(__dirname + '/views'));
 app.use(bodyParser());
 
 app.on('error', (err, ctx) => {
@@ -16,6 +24,7 @@ app.on('error', (err, ctx) => {
 	console.error('server status', ctx.response.status);
 });
 
+logger.info('Begin loading controllers');
 let controllers = require('./controllers');
 controllers.map((item, index) => {
 	app.use(item);

@@ -16,7 +16,7 @@ global.urlDictionary = {};
 
 // 处理每个js文件,检测routers中是否有重复定义的path，如果有则打印错误日志并结束进程
 js_files.map((item, index) => {
-	console.log(`loading controller: ${item.split(".")[0]}`);
+	logger.info(`Loading controller: ${item.split(".")[0]}`);
 	// 导入js文件:
 	let mapping = require(__dirname + '/controllers/' + item.split(".")[0]);
 	try {
@@ -29,11 +29,11 @@ js_files.map((item, index) => {
 			} else if (element.methods.map(item => global.urlDictionary[element.path].has(item)).indexOf(true) > -1) {
 				global.urlDictionary[element.path].push(element.methods);
 			} else {
-				throw (`[${config.exitProcessWhileDuplicateDefinitionPath ? 'Error' : 'Warning'}]Duplicate Definition Path:${element.path},METHOD:${element.methods}.File Dictionary:${__dirname + '/controllers/' + item}`);
+				throw (`Duplicate Definition Path:${element.path},METHOD:${element.methods}.File Dictionary:${__dirname + '/controllers/' + item}`);
 			}
 		});
 	} catch (error) {
-		console.log('\x1B[31m%s\x1B[0m', error);
+		config.exitProcessWhileDuplicateDefinitionPath ? logger.error('\x1B[31m%s\x1B[0m', error) : logger.warn(error);
 		if (config.exitProcessWhileDuplicateDefinitionPath) process.exit();
 	}
 	routes.push(mapping);

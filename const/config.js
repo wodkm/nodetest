@@ -8,6 +8,23 @@ const config = {
         port: 31885 // 端口号
     },
     exitProcessWhileDuplicateDefinitionPath: false,//当router path重复定义时是否结束进程
+    log4jsConfigure: {
+        appenders: {
+            file: {
+                type: 'file',
+                filename: __dirname + '/logs/cheese.log'
+            },
+            console: {
+                type: 'console',
+            }
+        },
+        categories: {
+            default: {
+                appenders: ['file', 'console'],
+                level: 'info'
+            }
+        }
+    }
 }
 
 module.exports = config;
