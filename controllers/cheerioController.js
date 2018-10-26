@@ -2,44 +2,20 @@
 const router = require('koa-router')();
 const cheerio = require('cheerio');
 const request = require('request');
+const util = require('util');
+const getPromise = util.promisify(request.get);
 
-router.get("/cheerio", ctx => {
-    var news = new Array();
-    ctx.body = 123;
-    request('https://www.jianshu.com/', function (err, res) {
-        if (err) return console.error(err);
-        var $ = cheerio.load(res.body.toString());
-        var table = $('.note-list');
-        console.log(table);
-        console.log(ctx);
-        ctx.body = 123;
+router.get("/cheerio", async ctx => {
+    let result = await getPromise('https://www.jianshu.com/', {
+        'auth': {
+            'user': 'xx',
+            'pass': 'xx',
+            'sendImmediately': 'false',
+        }
     });
-});
-
-router.post("/cheerio", ctx => {
-    var news = new Array();
-    ctx.body = 456;
-    request('https://www.jianshu.com/', function (err, res) {
-        if (err) return console.error(err);
-        var $ = cheerio.load(res.body.toString());
-        var table = $('.note-list');
-        console.log(table);
-        console.log(ctx);
-        ctx.body = 456;
-    });
-});
-
-router.post("/cheerio", ctx => {
-    var news = new Array();
-    ctx.body = 789;
-    request('https://www.jianshu.com/', function (err, res) {
-        if (err) return console.error(err);
-        var $ = cheerio.load(res.body.toString());
-        var table = $('.note-list');
-        console.log(table);
-        console.log(ctx);
-        ctx.body = 456;
-    });
+    // 可以加入 try catch 捕获异常  也可以加 .catch()
+    console.log("result", result.body);
+    ctx.response.body = result.body;
 });
 
 module.exports = router.routes();

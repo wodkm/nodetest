@@ -8,4 +8,5 @@ ORM框架: Sequelize
 开发用守护进程：nodemon  
 守护进程：forever=>pm2，注：请全局安装  
 爬虫：cheerio  
+日志输出：log4js  
 如果要使用云服务器的话，推荐阿里云  
