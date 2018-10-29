@@ -10,3 +10,4 @@ ORM框架: Sequelize
 爬虫：cheerio  
 日志输出：log4js  
 如果要使用云服务器的话，推荐阿里云  
+今后将探索并实践NodeJs与Golang结合的开发模式  
