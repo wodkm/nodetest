@@ -32,6 +32,7 @@
     "koa-router": "^7.4.0",
     "koa-static": "^4.0.3",
     "log4js": "^3.0.6",
+    "mongodb": "^3.1.8",
     "mysql": "^2.15.0",
     "mysql2": "^1.5.3",
     "nodemon": "^1.18.3",
