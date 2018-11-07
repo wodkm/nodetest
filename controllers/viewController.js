@@ -62,4 +62,13 @@ router.get("/query", ctx => {
 	ctx.response.body = html;
 });
 
+//semanticTest
+router.get("/semanticTest", ctx => {
+	let html = env.render('../views/index.html', {
+		moduleName: 'semanticTest',
+		title: 'semanticTest',
+	});
+	ctx.response.body = html;
+});
+
 module.exports = router.routes();

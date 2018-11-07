@@ -29,6 +29,9 @@ module.exports = {
     plugins: [
         new CleanWebpackPlugin([__dirname + './static/js'])
     ],
+    performance: {
+        hints: false,
+    },
     module: {
         rules: [
             {
