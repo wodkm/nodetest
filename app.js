@@ -15,7 +15,6 @@ logger.info('Log4js loaded');
 const app = new koa();
 
 app.use(serve(__dirname + '/static'));
-app.use(serve(__dirname + '/static/js'));
 app.use(serve(__dirname + '/views'));
 app.use(bodyParser());
 

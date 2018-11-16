@@ -23,11 +23,13 @@ module.exports = {
     mode: 'production',
     entry: entries,////指定入口文件，程序从这里开始编译,__dirname当前所在目录, ../表示上一级目录, ./同级目录
     output: {
-        path: path.resolve(__dirname, './static/js'), // 输出的路径
-        filename: '[name].js'  // 打包后文件
+        path: path.resolve(__dirname, 'static'), // 输出的路径
+        publicPath: '',//资源引用路径
+        filename: 'js/[name].js'  // 打包后文件
     },
     plugins: [
-        new CleanWebpackPlugin([__dirname + './static/js'])
+        new CleanWebpackPlugin([__dirname + '/static/js']),
+        new CleanWebpackPlugin([__dirname + '/static/resources']),
     ],
     performance: {
         hints: false,
@@ -43,8 +45,7 @@ module.exports = {
                     }
                 },
                 exclude: /node_modules/
-            },
-            {
+            }, {
                 test: /\.(js)$/,
                 use: {
                     loader: 'babel-loader',
@@ -53,17 +54,19 @@ module.exports = {
                     }
                 },
                 exclude: /node_modules/
-            },
-            {
-                test: /\.(png|jpg|gif|svg)$/,
+            }, {
+                test: /\.(png|jpg|gif|svg|ttf|eot|woff|woff2)$/,
                 use: [
                     {
-                        loader: 'file-loader',
-                        options: {}
+                        loader: 'url-loader',
+                        options: {
+                            name: '[name].[ext]',
+                            outputPath: 'resources/',
+                            limit: '1024',//超过1M的文件使用file-loader
+                        }
                     }
                 ]
-            },
-            {
+            }, {
                 test: /\.css$/,
                 use: [{ loader: 'style-loader' }, { loader: 'css-loader' }]
             }
