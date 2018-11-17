@@ -3,7 +3,7 @@ const koa = require('koa');
 const path = require('path');
 const serve = require('koa-static');//静态资源
 const bodyParser = require('koa-bodyparser');//json
-const config = require('./const/config');
+global.config = require('./const/config');
 
 //加载log4js
 const log4js = require('log4js');

@@ -2,7 +2,7 @@ const path = require('path');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 //遍历指定文件目录，使用多入口文件
 const glob = require('glob');
-var files = glob.sync(__dirname + '/src/*.jsx');
+var files = glob.sync(__dirname + '/src/modules/*.jsx');
 let entries = {};
 files.map((item, index) => {
     console.log(path.basename(item, '.jsx'));//获取文件名
@@ -31,6 +31,16 @@ module.exports = {
         new CleanWebpackPlugin([__dirname + '/static/js']),
         new CleanWebpackPlugin([__dirname + '/static/resources']),
     ],
+    resolve: {
+        alias: {
+            '@static': path.resolve(__dirname, 'static'),
+            '@stylesheets': path.resolve(__dirname, 'static/stylesheets'),
+            '@images': path.resolve(__dirname, 'static/images'),
+            '@components': path.resolve(__dirname, 'src/components'),
+            '@modules': path.resolve(__dirname, 'src/modules'),
+            '@templates': path.resolve(__dirname, 'src/templates'),
+        }
+    },
     performance: {
         hints: false,
     },

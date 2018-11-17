@@ -1,7 +1,6 @@
 'use strict'
 const router = require('koa-router')();
 const Sequelize = require('sequelize');
-const config = require('../const/config');
 
 var sequelize = new Sequelize(config.database.name, config.database.username, config.database.password, {
     host: config.database.host,

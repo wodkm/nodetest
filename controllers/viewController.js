@@ -34,39 +34,12 @@ let env = createEnv('view', {
 	}
 });
 
-
-//index
-// router.get("/index", ctx => {
-// 	ctx.response.type = 'html';
-// 	ctx.response.body = fs.createReadStream('./views/index.html');
-// });
-router.get("/index", ctx => {
+router.get(`/modules/:moduleName`, ctx => {
+	logger.info(`Module request: ${ctx.params.moduleName}`);
 	let html = env.render('../views/index.html', {
-		moduleName: 'index'
-	});
-	ctx.response.body = html;
-});
-
-//hello
-router.get("/hello", ctx => {
-	let html = env.render('../views/index.html', {
-		moduleName: 'index2',
-		name: '小明'
-	});
-	ctx.response.body = html;
-});
-
-//query
-router.get("/query", ctx => {
-	let html = env.render('../views/query/query.html');
-	ctx.response.body = html;
-});
-
-//semanticTest
-router.get("/semanticTest", ctx => {
-	let html = env.render('../views/index.html', {
-		moduleName: 'semanticTest',
-		title: 'semanticTest',
+		moduleName: ctx.params.moduleName,
+		title: ctx.params.moduleName,
+		contentPath: config.contextPath,
 	});
 	ctx.response.body = html;
 });

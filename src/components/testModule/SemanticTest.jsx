@@ -13,7 +13,6 @@ export default class SemanticTest extends Component {
                 <Button primary>Primary</Button>
                 <Button secondary>Secondary</Button>
                 <Button content='Primary123' primary />
-                <Image src='/images/flags.png' size='small' />
             </div>
         );
     }
