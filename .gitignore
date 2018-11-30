@@ -5,3 +5,5 @@ yarn-error.log
 logs
 /static/js
 /static/resources
+/semantic
+/semantic.json
