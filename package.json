@@ -7,8 +7,6 @@
     "start": "nodemon app.js",
     "webpack": "webpack --config ./webpack.config.js",
     "sass": "sass --watch static/sass:static/stylesheets --style expanded",
-    "forever": "forever -w start app.js",
-    "forever2": "forever -c nodemon --exitcrash app.js",
     "pm2": "pm2 start nodemon app.js"
   },
   "author": "",
@@ -23,7 +21,6 @@
     "clean-webpack-plugin": "^0.1.19",
     "css-loader": "^0.28.11",
     "file-loader": "^1.1.11",
-    "forever": "^0.15.3",
     "glob": "^7.1.2",
     "koa": "^2.5.1",
     "koa-body": "^2.5.0",
