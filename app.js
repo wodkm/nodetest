@@ -38,4 +38,6 @@ app.use((ctx, next) => {
 	}
 });
 
-app.listen(3000);
+let port = config.server.port || 8080;
+logger.info('Start listening on port ' + port);
+app.listen(port);

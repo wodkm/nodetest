@@ -1,5 +1,8 @@
 'use strict';
 const config = {
+    server: {
+        port: 3000,//服务端口
+    },
     database: {
         name: 'oms',
         username: 'root', // 用户名
