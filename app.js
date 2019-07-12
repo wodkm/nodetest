@@ -1,5 +1,6 @@
 'use strict';
 const koa = require('koa');
+const compress = require('koa-compress');
 const path = require('path');
 const serve = require('koa-static');//静态资源
 const bodyParser = require('koa-bodyparser');//json
@@ -11,8 +12,18 @@ log4js.configure(config.log4jsConfigure);
 global.logger = log4js.getLogger();
 logger.info('Log4js loaded');
 
-
 const app = new koa();
+
+//gzip设置
+app.use(
+	compress({
+		// filter: function (content_type) { // 只有在请求的content-type中有gzip类型，我们才会考虑压缩，因为zlib是压缩成gzip类型的
+		// 	return /text/i.test(content_type);
+		// },
+		threshold: 1024, // 阀值，当数据超过1kb的时候，可以压缩
+		flush: require('zlib').Z_SYNC_FLUSH // zlib是node的压缩模块
+	})
+);
 
 app.use(serve(__dirname + '/static'));
 app.use(serve(__dirname + '/views'));
