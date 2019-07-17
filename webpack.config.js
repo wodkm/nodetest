@@ -1,5 +1,6 @@
 const path = require('path');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const CompressionPlugin = require("compression-webpack-plugin");
 //遍历指定文件目录，使用多入口文件
 const glob = require('glob');
 var files = glob.sync(__dirname + '/src/modules/*.jsx');
@@ -30,6 +31,14 @@ module.exports = {
     plugins: [
         new CleanWebpackPlugin([__dirname + '/static/js']),
         new CleanWebpackPlugin([__dirname + '/static/resources']),
+        new CompressionPlugin({
+            // asset: '[path].gz[query]', //目标资源名称。[file] 会被替换成原资源。[path] 会被替换成原资源路径，[query] 替换成原查询字符串
+            // algorithm: 'gzip',//算法
+            filename: '[path].gz',
+            test: /\.js(\?.*)?$/i,
+            // threshold: 1024,//只处理比这个值大的资源。按字节计算
+            // minRatio: 0.8//只有压缩率比这个值小的资源才会被处理
+        })
     ],
     resolve: {
         alias: {
@@ -48,6 +57,7 @@ module.exports = {
         rules: [
             {
                 test: /\.(jsx)$/,
+                exclude: /(node_modules|bower_components)/,
                 use: {
                     loader: 'babel-loader',
                     options: {
@@ -57,6 +67,7 @@ module.exports = {
                 exclude: /node_modules/
             }, {
                 test: /\.(js)$/,
+                exclude: /(node_modules|bower_components)/,
                 use: {
                     loader: 'babel-loader',
                     options: {
