@@ -1,4 +1,3 @@
-'use strict';
 const config = {
     server: {
         port: 3000,//服务端口
@@ -30,4 +29,4 @@ const config = {
     }
 }
 
-module.exports = config;
+export default config;

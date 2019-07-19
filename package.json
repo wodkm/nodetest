@@ -4,14 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon app.js",
+    "start": "nodemon app.ts",
     "webpack": "webpack --config ./webpack.config.js",
     "sass": "sass --watch static/sass:static/stylesheets --style expanded",
-    "pm2": "pm2 start app.js"
+    "pm2": "pm2 start app.ts"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/node": "^12.6.8",
     "antd": "^3.10.9",
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.4",
@@ -43,6 +44,7 @@
     "react-scripts": "^1.1.4",
     "sequelize": "^4.37.8",
     "style-loader": "^0.21.0",
+    "ts-node": "^8.3.0",
     "typescript": "^3.5.3",
     "webpack-cli": "^3.3.5"
   },
