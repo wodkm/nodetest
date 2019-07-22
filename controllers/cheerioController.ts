@@ -21,7 +21,7 @@ const remote_get = function (url: string) {
 
 myRouter.get("/cheerio_imgUrl", async ctx => {
     let result = await remote_get('https://www.jianshu.com/');
-    let $ = cheerio.load(result.body);
+    let $ = cheerio.load(result.text);
     // 可以加入 try catch 捕获异常  也可以加 .catch()
     let img_url: any[] = [];
     $('li').each((index: any, item: any) => {
@@ -32,7 +32,7 @@ myRouter.get("/cheerio_imgUrl", async ctx => {
 
 myRouter.get("/cheerio_html", async ctx => {
     let result = await remote_get('https://www.jianshu.com/');
-    ctx.response.body = result.body;
+    ctx.response.body = result.text;
 });
 
 export = myRouter.routes();
