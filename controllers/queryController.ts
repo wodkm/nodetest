@@ -1,6 +1,8 @@
-'use strict'
-const router = require('koa-router')();
-const Sequelize = require('sequelize');
+import router from 'koa-router';
+import Sequelize from 'sequelize';
+import { config } from '../const/config';
+
+const myRouter = new router();
 
 var sequelize = new Sequelize(config.database.name, config.database.username, config.database.password, {
     host: config.database.host,
@@ -21,8 +23,8 @@ var sequelize = new Sequelize(config.database.name, config.database.username, co
 // });
 // var sequelize = new Sequelize(`mysql://${config.database.username}:${config.database.password}@${config.database.host}}/${config.database.name}`);
 
-router.get("/queryInfo", ctx => {
+myRouter.get("/queryInfo", (ctx: any) => {
     ctx.response.body = JSON.stringify({ data: 123 });
 });
 
-module.exports = router.routes();
+export = myRouter.routes();

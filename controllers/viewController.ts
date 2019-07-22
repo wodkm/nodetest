@@ -1,9 +1,12 @@
-'use strict';
-const router = require('koa-router')();
-const nunjucks = require('nunjucks');
-const fs = require('fs');
+import router from 'koa-router';
+import nunjucks from 'nunjucks';
+import fs from 'fs';
+import { config } from '../const/config';
+import { logger } from '../utils/loggerUtil';
 
-function createEnv(path, opts) {
+const myRouter = new router();
+
+function createEnv(path: any, opts: any) {
 	var
 		autoescape = opts.autoescape === undefined ? true : opts.autoescape,
 		noCache = opts.noCache || false,
@@ -28,13 +31,13 @@ function createEnv(path, opts) {
 let env = createEnv('view', {
 	watch: true,
 	filters: {
-		hex: function (n) {
+		hex: function (n: any) {
 			return '0x' + n.toString(16);
 		}
 	}
 });
 
-router.get(`/modules/:moduleName`, ctx => {
+myRouter.get(`/modules/:moduleName`, (ctx: any) => {
 	logger.info(`Module request: ${ctx.params.moduleName}`);
 	let html = env.render('../views/index.html', {
 		moduleName: ctx.params.moduleName,
@@ -44,4 +47,4 @@ router.get(`/modules/:moduleName`, ctx => {
 	ctx.response.body = html;
 });
 
-module.exports = router.routes();
+export = myRouter.routes();

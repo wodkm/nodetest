@@ -1,16 +1,12 @@
-'use strict';
-const koa = require('koa');
-const compress = require('koa-compress');
-const path = require('path');
-const serve = require('koa-static');//静态资源
-const bodyParser = require('koa-bodyparser');//json
-const config = require('./const/config');
+import koa from 'koa';
+import compress from 'koa-compress';
+import path from 'path';
+import serve from 'koa-static';//静态资源
+import bodyParser from 'koa-bodyparser';//json
+import { config } from './const/config';
+import { logger } from './utils/loggerUtil';
+import { controllers } from './controllers';
 
-//加载log4js
-const log4js = require('log4js');
-log4js.configure(config.log4jsConfigure);
-const logger = log4js.getLogger();
-// global['logger'] = log4js.getLogger();
 logger.info('Log4js loaded');
 
 const app = new koa();
@@ -38,7 +34,7 @@ app.on('error', (err: any, ctx: any) => {
 });
 
 logger.info('Begin loading controllers');
-let controllers = require('./controllers');
+
 controllers.map((item: any, index: any) => {
 	app.use(item);
 });

@@ -1,4 +1,4 @@
-const config = {
+export const config = {
     server: {
         port: 3000,//服务端口
     },
@@ -26,7 +26,6 @@ const config = {
                 level: 'info'
             }
         }
-    }
+    },
+    contextPath: '',
 }
-
-export default config;

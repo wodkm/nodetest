@@ -1,17 +1,22 @@
 'use strict';
-const router = require('koa-router')();
-const fs = require('fs');
+
+import { Response } from "express-serve-static-core";
+
+import router from 'koa-router';
+import fs from 'fs';
+
+const myRouter = new router();
 
 //404
-router.get('/404', ctx => {
+myRouter.get('/404', (ctx: any) => {
 	ctx.response.type = 'html';
 	ctx.response.body = fs.createReadStream('./views/404.html');
 });
 
 //500
-router.get('/500', ctx => {
+myRouter.get('/500', (ctx: any) => {
 	ctx.response.type = 'html';
 	ctx.response.body = fs.createReadStream('./views/500.html');
 });
 
-module.exports = router.routes();
+export = myRouter.routes();
