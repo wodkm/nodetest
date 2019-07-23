@@ -1,6 +1,8 @@
 import router from 'koa-router';
 import cheerio from 'cheerio';
 import superagent from 'superagent';
+import redisUtil from '../utils/redisUtil';
+import { logger } from '../utils/loggerUtil';
 
 const myRouter = new router();
 
@@ -26,6 +28,13 @@ myRouter.get("/cheerio_imgUrl", async ctx => {
     let img_url: any[] = [];
     $('li').each((index: any, item: any) => {
         img_url.push($(item).find('img').attr('src'));
+        try {
+            if ($(item).find('img').attr('src')) {
+                redisUtil.lpush('cheerio_imgUrl', $(item).find('img').attr('src'));
+            }
+        } catch (error) {
+            logger.error(error);
+        }
     });
     ctx.response.body = img_url.join('\n');
 });

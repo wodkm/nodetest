@@ -28,4 +28,8 @@ export const config = {
         }
     },
     contextPath: '',
+    redis: {
+        host: '47.74.180.149',
+        port: 6379,
+    }
 }
