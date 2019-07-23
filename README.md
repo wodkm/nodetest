@@ -9,9 +9,13 @@ ORM框架: Sequelize
 生产环境守护进程：forever=>pm2，注：请全局安装，或使用“npm run”命令  
 爬虫：cheerio  
 日志输出：log4js  
-UI框架：Semantic UI，注：本项目选择使用semantic-ui而非semantic-ui-css，方便处理日后的个性化需求。semantic-ui需本地编译，如需开箱即用版本请使用semantic-ui-css库  
-        官方文档：https://react.semantic-ui.com  
+UI框架：AntD
 JS框架：react  
 构建工具：webpack、gulp  
-如果要使用云服务器的话，推荐阿里云  
+如果要使用云服务器的话，推荐亚马逊  
 今后将探索并实践NodeJs与Golang结合的开发模式  
+已使用typescript重构服务代码  
+目前已加入Redis相关支持，相关文档：  
+    https://github.com/NodeRedis/node_redis  
+    https://www.redis.net.cn/  
+    https://www.runoob.com/redis/redis-tutorial.html  
